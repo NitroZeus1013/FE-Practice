@@ -1,0 +1,23 @@
+.main-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: hsl(217, 100%, 97%);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer{
+  /* align-self: flex-end; */
+}
+
+@media (min-width:64rem) {
+  .main-container{
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  .footer{
+    display: none;
+  }
+}
