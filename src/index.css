@@ -1,27 +1,2 @@
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/src/assets/fonts/Ubuntu-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/src/assets/fonts/Ubuntu-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/src/assets/fonts/Ubuntu-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-html, body {
-  font-family: 'Ubuntu', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-}
+@import url('/src/global/fonts.css');
+@import url('/src/global/styles.css');

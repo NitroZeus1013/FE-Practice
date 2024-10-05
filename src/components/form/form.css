@@ -28,6 +28,11 @@
     .sidebar{
         min-height: 12.5rem;
     }
+    .main-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (min-width:64rem) {
