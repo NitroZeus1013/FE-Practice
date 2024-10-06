@@ -4,10 +4,21 @@
     row-gap: 0.25rem;
 }
 
+.label-container{
+    display: flex;
+    justify-content: space-between;
+}
+
 .input-label{
     font-size: 0.75rem;
     font-weight: 400;
     color: hsl(213, 96%, 18%);
+}
+
+.error-message{
+    font-size:0.75rem;
+    font-weight: 500;
+    color:var(--color-strawberry-red)
 }
 
 .real-input{
