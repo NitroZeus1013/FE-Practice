@@ -5,7 +5,6 @@ function App() {
   return (
     <div className="main-container">
       <Form />
-      <div className="footer">footer</div>
     </div>
   );
 }

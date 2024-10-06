@@ -1,0 +1,22 @@
+.toggle{
+    width: 2.5rem;
+    height:1.25rem;
+    background-color: var(--color-marine-blue);
+    border-radius: 0.75rem;
+    position: relative;
+    padding:.125rem;
+}
+
+.toggle::after{
+    content: '';
+    width: .75rem;
+    height: .75rem;
+    background-color: var(--color-white);
+    border-radius: 100%;
+    position: absolute;
+    top:0.25rem;
+    transition: all 200ms ease-in;
+}
+.toggle-enabled::after{
+    transform: translateX(22px);
+}

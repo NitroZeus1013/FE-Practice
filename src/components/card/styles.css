@@ -1,0 +1,21 @@
+.card-body{
+    display: flex;
+    column-gap: 0.75rem;
+    padding:1rem;
+    border:1px  solid var(--color-light-gray);
+    border-radius: 0.5rem;
+}
+.card-body-selected{
+    background-color:var(--color-alabaster);
+}
+.card-title{
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-marine-blue);
+}
+
+.card-subtitle{
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-cool-gray);   
+}

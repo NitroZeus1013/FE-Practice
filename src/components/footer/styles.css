@@ -1,0 +1,32 @@
+
+.footer{
+    background-color: var(--color-white);
+    padding-block: 1.25rem;
+    padding-inline: .75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer button:first-child{
+    border:none;
+    background-color: var(--color-white);
+    font-size: .7rem;
+    font-weight: 700;
+    color:var(--color-cool-gray)
+}
+.footer button:last-child{
+    border:none;
+    background-color: var(--color-marine-blue);
+    font-size: .7rem;
+    font-weight: 700;
+    color:var(--color-white);
+    padding:.6rem 1rem;
+    border-radius: .25rem;
+}
+
+@media (min-width:64rem) {
+    .footer{
+        display: none;
+    }
+}
