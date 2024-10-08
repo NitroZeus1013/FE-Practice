@@ -13,7 +13,8 @@
     background-color: var(--color-white);
     font-size: .7rem;
     font-weight: 700;
-    color:var(--color-cool-gray)
+    color:var(--color-cool-gray);
+    cursor: pointer;
 }
 .footer button:last-child{
     border:none;
@@ -23,10 +24,11 @@
     color:var(--color-white);
     padding:.6rem 1rem;
     border-radius: .25rem;
+    cursor: pointer;
 }
 
 @media (min-width:64rem) {
     .footer{
-        display: none;
+     padding-inline: 1.25rem;
     }
 }

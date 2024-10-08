@@ -8,24 +8,35 @@ const StepIndicator = ({
   isCurrentStep,
   stepNumber,
   setCurrStep,
+  label,
 }: {
   isCurrentStep: boolean;
   stepNumber: number;
   setCurrStep: Dispatch<React.SetStateAction<number>>;
+  label?: string;
 }) => {
   const onClick = () => {
     setCurrStep(stepNumber - 1);
   };
   return (
-    <div
-      onClick={onClick}
-      className={"step-number " + (isCurrentStep ? "current-step" : "")}
-    >
-      {stepNumber}
+    <div className="step-number-container">
+      <div
+        onClick={onClick}
+        className={"step-number " + (isCurrentStep ? "current-step" : "")}
+      >
+        {stepNumber}
+      </div>
+      {label && (
+        <div className="step-label-container">
+          <span>{`Step ${stepNumber}`}</span>
+          <span>{label}</span>
+        </div>
+      )}
     </div>
   );
 };
 const steps = [PersonalInfo, SelectPlan];
+const stepLabels = ["Your Info", "Select Plan", "Add-On", "Summary"];
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
   const Handler = steps[currentStep];
@@ -46,23 +57,22 @@ function Form() {
     <>
       <div className="form-container">
         <div className="sidebar">
-          {Array(4)
-            .fill(0)
-            .map((_, ind) => {
-              return (
-                <StepIndicator
-                  isCurrentStep={currentStep === ind}
-                  stepNumber={ind + 1}
-                  setCurrStep={setCurrentStep}
-                />
-              );
-            })}
+          {stepLabels.map((label, ind) => {
+            return (
+              <StepIndicator
+                isCurrentStep={currentStep === ind}
+                stepNumber={ind + 1}
+                setCurrStep={setCurrentStep}
+                label={label}
+              />
+            );
+          })}
         </div>
         <div className="main-content">
           <Handler />
+          <Footer goBack={goBack} goNext={goToNextStep} />
         </div>
       </div>
-      <Footer goBack={goBack} goNext={goToNextStep} />
     </>
   );
 }
