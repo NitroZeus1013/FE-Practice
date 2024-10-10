@@ -3,6 +3,7 @@ import PersonalInfo from "../personal_info";
 import SelectPlan from "../select_plan";
 import "./form.css";
 import Footer from "../footer";
+import AddOn from "../pick_add_ons";
 
 const StepIndicator = ({
   isCurrentStep,
@@ -35,7 +36,7 @@ const StepIndicator = ({
     </div>
   );
 };
-const steps = [PersonalInfo, SelectPlan];
+const steps = [PersonalInfo, SelectPlan, AddOn];
 const stepLabels = ["Your Info", "Select Plan", "Add-On", "Summary"];
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);

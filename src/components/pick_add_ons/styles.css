@@ -1,0 +1,14 @@
+.content-container{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.add-on-price{
+    color:var(--color-purplish-blue);
+}
+
+.add-on-card-body{
+    align-items: center;
+}
