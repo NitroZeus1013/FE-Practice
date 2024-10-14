@@ -4,4 +4,6 @@ export type TInputProps = {
   label: string;
   type: string;
   id: string;
+  value: string;
+  onChange: React.ChangeEventHandler;
 };

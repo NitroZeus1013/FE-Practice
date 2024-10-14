@@ -4,6 +4,8 @@ import SelectPlanCard from "./select-plan-card";
 import { PaymentFrequency } from "../../global/constants/common";
 import Toggle from "../toggle";
 import "./styles.css";
+import { useCustomDispatch, useGlobalState } from "../../context/form_context";
+import { ACTIONS } from "../../store/store";
 const cardData = [
   {
     title: "Arcade",
@@ -34,13 +36,34 @@ function getPrice(price: number, frequency: string) {
 }
 function SelectPlan() {
   //frequency  : monthly or yearly
-  const [frequency, setFrequency] = useState(PaymentFrequency.MONTHLY);
+  // const [frequency, setFrequency] = useState(PaymentFrequency.MONTHLY);
+  // const [selected, setSelected] = useState(-1);
+  const dispatch = useCustomDispatch();
+  const { plan } = useGlobalState();
+  const { frequency, id: selected } = plan;
   const handleToggle = () => {
     if (frequency === PaymentFrequency.MONTHLY) {
-      setFrequency(PaymentFrequency.YEARLY);
+      dispatch({
+        type: ACTIONS.ADD_PLAN,
+        payload: { frequency: PaymentFrequency.YEARLY },
+      });
     } else {
-      setFrequency(PaymentFrequency.MONTHLY);
+      dispatch({
+        type: ACTIONS.ADD_PLAN,
+        payload: { frequency: PaymentFrequency.MONTHLY },
+      });
     }
+  };
+  const handleSelect = (id: number) => {
+    dispatch({
+      type: ACTIONS.ADD_PLAN,
+      payload: {
+        frequency,
+        id,
+        name: cardData[id].title,
+        price: cardData[id].price,
+      },
+    });
   };
   return (
     <>
@@ -51,13 +74,15 @@ function SelectPlan() {
         {cardData.map((item, index) => {
           return (
             <SelectPlanCard
+              id={index}
               title={item.title}
               subTitle={getSubtitle(getPrice(item.price, frequency), frequency)}
-              isSelected={index === 0}
+              isSelected={index === selected}
               iconUrl={item.iconUrl}
               subTitle2={
                 frequency === PaymentFrequency.YEARLY ? "2 months free" : ""
               }
+              onClick={handleSelect}
             />
           );
         })}

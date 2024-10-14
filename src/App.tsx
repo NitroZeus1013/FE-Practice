@@ -1,11 +1,14 @@
 import "./App.css";
 import Form from "./components/form/form";
+import { FormProvider } from "./context/form_context";
 
 function App() {
   return (
-    <div className="main-container">
-      <Form />
-    </div>
+    <FormProvider>
+      <div className="main-container">
+        <Form />
+      </div>
+    </FormProvider>
   );
 }
 

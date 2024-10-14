@@ -1,0 +1,31 @@
+.summary-container{
+    background-color: var(--color-magnolia);
+    border-radius: .5rem;
+    padding:1rem;
+    margin-bottom: 1rem;
+}
+
+.summary-row,.summary-row-main-container {
+    display: flex;
+    justify-content: space-between;
+}
+.summary-row{
+    margin-top: .5rem;
+}
+.summary-row-main-title{
+    font-weight:700;
+    color: var(--color-marine-blue);
+}
+
+.summary-row-main-btn{
+    color: var(--color-cool-gray);   
+    padding:0;
+    font-size: 0.75rem;
+    border:none;
+    margin:0;
+    text-decoration: underline;
+}
+
+hr{
+    border-color: var(--color-alabaster);   
+}
