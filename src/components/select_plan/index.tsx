@@ -6,6 +6,7 @@ import Toggle from "../toggle";
 import "./styles.css";
 import { useCustomDispatch, useGlobalState } from "../../context/form_context";
 import { ACTIONS } from "../../store/store";
+import { getPrice, getSubtitle } from "../../common/utils";
 const cardData = [
   {
     title: "Arcade",
@@ -24,20 +25,7 @@ const cardData = [
   },
 ];
 
-function getSubtitle(price: number, frequency: string) {
-  const suffix = frequency === PaymentFrequency.MONTHLY ? "mo" : "yr";
-  return `$${price}/${suffix}`;
-}
-
-function getPrice(price: number, frequency: string) {
-  const computuedPrice =
-    frequency === PaymentFrequency.MONTHLY ? price : price * 10;
-  return computuedPrice;
-}
 function SelectPlan() {
-  //frequency  : monthly or yearly
-  // const [frequency, setFrequency] = useState(PaymentFrequency.MONTHLY);
-  // const [selected, setSelected] = useState(-1);
   const dispatch = useCustomDispatch();
   const { plan } = useGlobalState();
   const { frequency, id: selected } = plan;
@@ -71,22 +59,26 @@ function SelectPlan() {
         header="Select your plan"
         subHeader="You have the option of monthly or yearly billing."
       >
-        {cardData.map((item, index) => {
-          return (
-            <SelectPlanCard
-              id={index}
-              title={item.title}
-              subTitle={getSubtitle(getPrice(item.price, frequency), frequency)}
-              isSelected={index === selected}
-              iconUrl={item.iconUrl}
-              subTitle2={
-                frequency === PaymentFrequency.YEARLY ? "2 months free" : ""
-              }
-              onClick={handleSelect}
-            />
-          );
-        })}
-
+        <div className="plans-container">
+          {cardData.map((item, index) => {
+            return (
+              <SelectPlanCard
+                id={index}
+                title={item.title}
+                subTitle={getSubtitle(
+                  getPrice(item.price, frequency),
+                  frequency
+                )}
+                isSelected={index === selected}
+                iconUrl={item.iconUrl}
+                subTitle2={
+                  frequency === PaymentFrequency.YEARLY ? "2 months free" : ""
+                }
+                onClick={handleSelect}
+              />
+            );
+          })}
+        </div>
         <div className="freq-toggle">
           <span>Monthly</span>
           <Toggle

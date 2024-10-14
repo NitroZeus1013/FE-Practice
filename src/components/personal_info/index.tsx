@@ -7,7 +7,10 @@ function PersonalInfo() {
   const { personalInfo } = useGlobalState();
   const dispatch = useCustomDispatch();
   const handleChange = (id: string, value: string) => {
-    dispatch({ type: ACTIONS.UPDATE_PERSONAL_INFO, payload: { [id]: value } });
+    dispatch({
+      type: ACTIONS.UPDATE_PERSONAL_INFO,
+      payload: { [id]: { value } },
+    });
   };
   return (
     <>
@@ -21,10 +24,11 @@ function PersonalInfo() {
           placeholder="e.g.Stephen King"
           type="text"
           id="name"
-          value={personalInfo.name}
+          value={personalInfo.name.value}
           onChange={(e) => {
             handleChange("name", e.target.value);
           }}
+          error={personalInfo.name.error}
         />
         <Input
           label="Email Address"
@@ -32,8 +36,9 @@ function PersonalInfo() {
           placeholder="e.g.stephenking@lorem.com"
           type="text"
           id="email"
-          value={personalInfo.email}
+          value={personalInfo.email.value}
           onChange={(e) => handleChange("email", e.target.value)}
+          error={personalInfo.email.error}
         />
         <Input
           label="Phone Number"
@@ -41,8 +46,9 @@ function PersonalInfo() {
           placeholder="e.g.+1 234 567 890"
           type="text"
           id="phone"
-          value={personalInfo.phone}
+          value={personalInfo.phone.value}
           onChange={(e) => handleChange("phone", e.target.value)}
+          error={personalInfo.phone.error}
         />
       </StepContainer>
     </>

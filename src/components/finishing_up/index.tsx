@@ -1,3 +1,5 @@
+import { getPrice, getSubtitle } from "../../common/utils";
+import { useGlobalState } from "../../context/form_context";
 import { PaymentFrequency } from "../../global/constants/common";
 import Card from "../card";
 import StepContainer from "../step_container";
@@ -9,7 +11,7 @@ function SummaryRow({
   priceStyleClass,
 }: {
   title: string;
-  price: number;
+  price: string;
   priceStyleClass?: string;
 }) {
   return (
@@ -17,7 +19,7 @@ function SummaryRow({
       <Card.SubTitle>{title}</Card.SubTitle>
       <Card.SubTitle
         externalStylesClass={priceStyleClass ?? ""}
-      >{`+$${price}`}</Card.SubTitle>
+      >{`+${price}`}</Card.SubTitle>
     </div>
   );
 }
@@ -27,7 +29,7 @@ function MainSummaryRow({
   title,
 }: {
   title: string;
-  price: number;
+  price: string;
   frequency: PaymentFrequency;
 }) {
   return (
@@ -41,7 +43,7 @@ function MainSummaryRow({
           <button className="summary-row-main-btn">Change</button>
         </div>
         <Card.SubTitle externalStylesClass="summary-row-main-title">
-          {`$${price}`}
+          {price}
         </Card.SubTitle>
       </div>
       <hr />
@@ -49,6 +51,12 @@ function MainSummaryRow({
   );
 }
 function FinishingUp() {
+  const { plan, addOn } = useGlobalState();
+  const getTotal = () => {
+    let price = plan.price;
+    Object.values(addOn).forEach((ao) => (price += ao.price));
+    return price;
+  };
   return (
     <StepContainer
       header="Finishing up"
@@ -56,17 +64,35 @@ function FinishingUp() {
     >
       <div className="summary-container">
         <MainSummaryRow
-          title={"Arcade"}
-          price={10}
-          frequency={PaymentFrequency.MONTHLY}
+          title={plan.name}
+          price={getSubtitle(
+            getPrice(plan.price, plan.frequency),
+            plan.frequency
+          )}
+          frequency={plan.frequency}
         />
-        <SummaryRow price={1} title="Online service" />
-        <SummaryRow price={3} title="Larger storage" />
+        {Object.keys(addOn).map((key) => {
+          const ao = addOn[key];
+          return (
+            <SummaryRow
+              price={getSubtitle(
+                getPrice(ao.price, plan.frequency),
+                plan.frequency
+              )}
+              title={ao.title}
+            />
+          );
+        })}
       </div>
       <div style={{ paddingInline: "1rem" }}>
         <SummaryRow
-          price={12}
-          title="Total(per month)"
+          price={getSubtitle(
+            getPrice(getTotal(), plan.frequency),
+            plan.frequency
+          )}
+          title={`Total(per ${
+            plan.frequency === PaymentFrequency.MONTHLY ? "month" : "year"
+          })`}
           priceStyleClass="summary-row-main-title"
         />
       </div>

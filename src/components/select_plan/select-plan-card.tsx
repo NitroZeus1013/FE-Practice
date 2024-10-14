@@ -21,7 +21,11 @@ function SelectPlanCard({
 }) {
   return (
     <>
-      <Card.Body isSelected={isSelected} onClick={() => onClick(id)}>
+      <Card.Body
+        isSelected={isSelected}
+        onClick={() => onClick(id)}
+        externalStylesClass="select-plan-card"
+      >
         <div>
           <img src={iconUrl} alt={altText} />
         </div>

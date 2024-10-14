@@ -7,6 +7,7 @@ function PickAddOnCard({
   subTitle,
   subTitle2,
   isSelected,
+  price,
   onClick,
 }: {
   id: number;
@@ -14,6 +15,7 @@ function PickAddOnCard({
   subTitle: string;
   subTitle2?: string;
   isSelected: boolean;
+  price: string;
   onClick: (id?: number) => void;
 }) {
   return (
@@ -27,7 +29,7 @@ function PickAddOnCard({
           <input
             type="checkbox"
             checked={isSelected}
-            onClick={() => onClick(id)}
+            onChange={() => onClick(id)}
           />
         </div>
         <div className="content-container">
@@ -37,7 +39,7 @@ function PickAddOnCard({
             {subTitle2 && <Card.SubTitle>{subTitle2}</Card.SubTitle>}
           </div>
           <Card.SubTitle externalStylesClass={"add-on-price"}>
-            10$/yr
+            {price}
           </Card.SubTitle>
         </div>
       </Card.Body>

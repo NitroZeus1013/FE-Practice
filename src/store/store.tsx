@@ -3,9 +3,9 @@ import { PaymentFrequency } from "../global/constants/common";
 
 export const initialState = {
   personalInfo: {
-    name: "",
-    email: "",
-    phone: "",
+    name: { value: "", error: "" },
+    email: { value: "", error: "" },
+    phone: { value: "", error: "" },
   },
   plan: {
     id: -1,
@@ -13,13 +13,11 @@ export const initialState = {
     price: 0,
     frequency: PaymentFrequency.MONTHLY,
   },
-  addOn: [
-    {
-      id: -1,
-      name: "",
-      price: 0,
-    },
-  ],
+  addOn: {},
+  error: {
+    isError: false,
+    step: 0,
+  },
 };
 
 export type TInitialState = typeof initialState;
@@ -27,6 +25,8 @@ export type TInitialState = typeof initialState;
 export const ACTIONS = {
   UPDATE_PERSONAL_INFO: "update_personal_info",
   ADD_PLAN: "add_plan",
+  ADD_ON: "add_on",
+  SET_ERROR: "personal_info_error",
 };
 const reducer = (state: typeof initialState, action: any) => {
   switch (action.type) {
@@ -40,6 +40,12 @@ const reducer = (state: typeof initialState, action: any) => {
         ...state,
         plan: { ...state.plan, ...action.payload },
       };
+    case ACTIONS.ADD_ON:
+      return {
+        ...state,
+        addOn: { ...state.addOn, ...action.payload },
+      };
+
     default:
       return state;
   }

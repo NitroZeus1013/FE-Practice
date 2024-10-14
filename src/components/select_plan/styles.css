@@ -20,3 +20,22 @@
 .freq-toggle span:last-child{
     color: var(--color-alabaster);
 }
+
+.plans-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.75rem;
+}
+
+@media (min-width:64rem){
+    .plans-container{
+        flex-direction: row;
+        column-gap: 0.75rem;
+    }
+
+    .select-plan-card{
+        flex-direction: column;
+        row-gap: 2rem;
+        flex-basis: 100%;
+    }
+}

@@ -6,4 +6,5 @@ export type TInputProps = {
   id: string;
   value: string;
   onChange: React.ChangeEventHandler;
+  error?: string;
 };

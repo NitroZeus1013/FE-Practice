@@ -8,6 +8,7 @@ function Input({
   id,
   value,
   onChange,
+  error,
   type = "text",
 }: TInputProps) {
   return (
@@ -16,7 +17,7 @@ function Input({
         <label className="input-label" htmlFor={id}>
           {label}
         </label>
-        {/* <span className="error-message">This field is required</span> */}
+        {error && <span className="error-message">{error}</span>}
       </div>
       <input
         className="real-input"
